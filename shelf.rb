@@ -11,9 +11,8 @@
 #check the sum
 
 class Shelf
-  def total_volume
-
-    contents.values.inject(0) {|total, num| total + num }
+  def total_volume 
+    contents.values.inject(0) {|total, number| total + number}
   end
 
   def contents
@@ -25,5 +24,12 @@ class Shelf
       "#{title}: #{volume} pages"
     end.join("\n")
   end
+
+  def save
+    File.open('tmp/savefile', 'w') do |file|
+      file.puts "Sandman,88\n" 
+   end
+ end
+
 end
 

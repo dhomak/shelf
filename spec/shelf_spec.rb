@@ -45,5 +45,16 @@ describe Shelf do
         shelf.total_volume.should == 163
       end
     end
+
+    context "#save" do
+      before do
+        shelf.contents["Sandman"] = 88
+        shelf.save
+      end
+
+      it "saves stuff to a file" do
+        IO.readlines("tmp/savefile").should == ["Sandman,88\n"]
+      end
+    end
   end
 end

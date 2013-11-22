@@ -1,9 +1,12 @@
 # my_app.rb
 require 'sinatra/base'
+require 'pry'
 
 class ShelfApp < Sinatra::Base  
   get '/' do
-    "Hello World"
+    name = params["name"] || "World"
+
+    "Hello #{name}"
   end
   
   run! if app_file == $0

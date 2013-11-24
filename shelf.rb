@@ -25,11 +25,22 @@ class Shelf
     end.join("\n")
   end
 
-  def save
-    File.open('tmp/savefile', 'w') do |file|
-      file.puts "Sandman,88\n" 
-   end
- end
+  def save(filename = 'tmp/savefile')
+    File.open(filename, 'w') do |file|
+      contents.each do |entry|
+        file.puts entry.join(",")
+      end
+    end
+  end
 
+
+  def import(filename = 'tmp/savefile')
+    lines = IO.readlines(filename)
+    lines.each do |line|
+      key, value = line.strip.split(',')
+      contents[key] = value.to_i
+    end
+
+
+  end
 end
-

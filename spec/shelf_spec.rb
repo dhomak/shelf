@@ -57,5 +57,19 @@ describe Shelf do
         IO.readlines("tmp/savefile").should == ["Sandman,88\n"]
       end
     end
+
+    context "#import" do
+      before do
+        File.open('tmp/savefile', 'w') do |file|
+          file.puts "Sandman,88\n"
+        end
+        shelf.import
+      end
+      it "loads from file" do
+        shelf.contents.should == {"Sandman" => 88}
+      end
+    end
+
   end
 end
+
